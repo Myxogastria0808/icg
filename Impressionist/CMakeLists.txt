@@ -1,17 +1,14 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
 project(Impressionist CXX)
 
-set(OPTION_BUILD_EXAMPLES OFF CACHE BOOL "Build FLTK examples" FORCE)
-set(OPTION_BUILD_TEST OFF CACHE BOOL "Build FLTK tests" FORCE)
+set(OPTION_ABI_VERSION 10304 CACHE STRING "FLTK ABI Version" FORCE)
 
 set(PROJECT_VERSION 1.0.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 if(APPLE)
-  set(CMAKE_CXX_FLAGS "-fpermissive -std=c++0x -Wno-c++11-narrowing -Wno-register -Wno-misleading-indentation -DGL_SILENCE_DEPRECATION -DENABLE_NEON=ON -include \"${CMAKE_CURRENT_SOURCE_DIR}/include/mac_fixes.h\"")
-  set(CMAKE_CC "clang")
-  set(CMAKE_CXX "clang++")
+  add_compile_options(-include "${CMAKE_CURRENT_SOURCE_DIR}/include/mac_fixes.h")
   find_library(OPENGL_FRAMEWORK OpenGL REQUIRED)
   find_library(COREGRAPHICS_FRAMEWORK CoreGraphics REQUIRED)
   find_library(COCOA_FRAMEWORK Cocoa REQUIRED)
@@ -45,7 +42,7 @@ add_subdirectory(../fltk ThirdParty/fltk)
 
 # fltk_all: headers, libraries
 add_library(fltk_all INTERFACE)
-target_include_directories(fltk_all INTERFACE ../fltk ${CMAKE_CURRENT_BINARY_DIR}/fltk)
+target_include_directories(fltk_all INTERFACE ../fltk ${CMAKE_CURRENT_BINARY_DIR}/ThirdParty/fltk)
 target_link_libraries(fltk_all INTERFACE fltk fltk_gl fltk_images)
 
 # fltk_hello
