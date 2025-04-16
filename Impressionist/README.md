@@ -4,6 +4,11 @@
 
 After cloning this repository and setting up the submodules, type the following.
 
+## For Mac
+```
+brew install --cask xquartz
+```
+
 ```sh
 mkdir build
 cd build
