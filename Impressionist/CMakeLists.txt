@@ -36,11 +36,11 @@ else()
   set(EXTRA_LIBS "")
 endif()
 
-add_subdirectory(../fltk ThirdParty/fltk)
+add_subdirectory(../fltk ${CMAKE_CURRENT_BINARY_DIR}/ThirdParty/fltk)
 
 # fltk_all: headers, libraries
 add_library(fltk_all INTERFACE)
-target_include_directories(fltk_all INTERFACE ../fltk ${CMAKE_CURRENT_BINARY_DIR}/ThirdParty/fltk)
+target_include_directories(fltk_all INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/ThirdParty/fltk)
 target_link_libraries(fltk_all INTERFACE fltk fltk_gl fltk_images)
 
 # fltk_hello
