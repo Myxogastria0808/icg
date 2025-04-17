@@ -18,11 +18,6 @@
             fltk
             gcc
             cmake
-            # xorg.libX11
-            # xorg.libXft
-            # xorg.libXext
-            # zlib
-            # libpng
             doxygen
             pkg-config
             libGL
